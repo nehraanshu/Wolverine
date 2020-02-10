@@ -1,3 +1,4 @@
+name: "Wolverine Test"
 on:
   # Trigger the workflow on push or pull request,
   # but only for the master branch
@@ -8,7 +9,7 @@ on:
     branches: 
       - master
 jobs:
-  build:
+  Build:
     runs-on: windows-latest
 
     steps:
@@ -25,8 +26,12 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+        
+      - run: dotnet restore
+      - run: dotnet build
       - name: Run Functional Test
       - run: dotnet test --Run test
+      - name: chrome driver
         uses: actions/setup-dotnet@v1
         with:
           chromedriver-version: '77.0.3865.40'
