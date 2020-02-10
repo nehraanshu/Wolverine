@@ -26,15 +26,13 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-        
-      - run: dotnet restore
-      - run: dotnet build
       - name: Run Functional Test
-      - run: dotnet test --Run test
-      - name: chrome driver
         uses: actions/setup-dotnet@v1
         with:
           chromedriver-version: '77.0.3865.40'
+      - name: chrome driver
+      - run: dotnet test --Run test
+        
       - name: Set up
         run: |
           sudo pip3 install selenium
